@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script>
+
+const salaries = [45000, 67000, 36000];
+
+// Display first salary
+document.writeln("First Salary: " + salaries[0] + "<br><br>");
+
+// 1. Increment salary using map()
+const newSalaries = salaries.map(s => s + 1000);
+document.writeln("New Salaries (Modern - map): " + newSalaries + "<br><br>");
+
+// 2. Filter highly paid employees
+const highlyPaidEmployees = salaries.filter(s => s > 20000);
+document.writeln("Highly Paid Employees (Modern - filter): " + highlyPaidEmployees + "<br><br>");
+
+// 3. Calculate total salary
+const totalSalary = salaries.reduce((sum, s) => sum + s, 0);
+document.writeln("Total Salary (Modern - reduce): " + totalSalary);
+
+</script>
+
+</body>
+</html>

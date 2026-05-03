@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JSON + DOM Example</title>
+</head>
+<body>
+
+<!-- Static Data (Traditional Approach) -->
+<h3>Employee</h3>
+<ul>
+    <li>Niti - Trainer</li>
+    <li>Nitin - Trainer</li>
+    <li>Sakshi - Trainer</li>
+    <li>Jatin - Trainer</li>
+</ul>
+
+<!-- Dynamic Data -->
+<h3>Product Data in JSON</h3>
+<ul id="productlist"></ul> <!-- we will populate this list -->
+
+<script>
+
+// JSON Data (as string)
+const jsonData = `[
+    {"item": "Laptop", "price": 60000},
+    {"item": "Mouse", "price": 500},
+    {"item": "Keyboard", "price": 700},
+    {"item": "Speaker", "price": 5000}
+]`;
+
+// Convert JSON string → JavaScript object
+const productData = JSON.parse(jsonData);
+console.log(productData);
+
+// Get UL element from HTML
+const list = document.getElementById("productlist");
+
+// Loop through data and create list items
+productData.forEach(element => {
+
+    // Create <li>
+    const li = document.createElement("li");
+
+    // Add text to <li>
+    li.textContent = `Element Name : ${element.item} - Element Price : ${element.price}`;
+
+    // Add <li> to <ul>
+    list.append(li);
+
+});
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<script>
+
+// Step 1: Take input
+let productName = prompt("Enter product name");
+let price = prompt("Enter product price");
+
+// Step 2: Convert string → number
+price = Number(price);
+
+let finalPrice;
+
+// Step 3: Apply discount
+if(price > 1000) {
+    let discount = price * 0.10;
+    finalPrice = price - discount;
+}
+else {
+    finalPrice = price;
+}
+
+// Step 4: Print output
+document.writeln("Product Name: " + productName + "<br>");
+document.writeln("Original Price: " + price + "<br>");
+document.writeln("Final Price: " + finalPrice);
+
+</script>
+
+</body>
+</html>

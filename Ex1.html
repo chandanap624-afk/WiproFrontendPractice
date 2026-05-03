@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Objects and Arrays</title>
+</head>
+<body>
+
+<script>
+
+// Objects and Arrays in JavaScript
+
+// Object with your details
+const user = {
+    name: "Chandana",
+    role: "student"
+};
+
+// Empty object
+let student = {};
+
+// Object with your details
+let person = {
+    firstName: "Chandana",
+    lastName: "Patukota"
+};
+
+// Updating values
+person.firstName = "Chandana";
+person.lastName = "Patukota";
+
+// Adding new property
+person.age = 22;
+
+// Check property existence
+console.log('age' in person);        // true
+console.log('Chandana' in person);   // false
+
+// Delete property
+delete person.age;
+
+// Print object
+console.log(person);
+
+// Array with your city details
+let address = ["Bangalore", "India"];
+const colorCodes = [4, 6, 7, 4];
+
+// Mixed array
+const mixedArray = ["Chandana", 22, true, {address: "Bangalore"}];
+
+// Access array values
+console.log(address[0]);
+console.log(address);
+
+</script>
+
+</body>
+</html>

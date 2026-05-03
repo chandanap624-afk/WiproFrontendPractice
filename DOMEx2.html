@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM Example</title>
+</head>
+<body>
+
+    <!-- id is the unique identifier -->
+    <h1 id="welcome">Default Text</h1>
+
+    <button id="changeText">Change the HTML Content</button>
+
+    <script>
+
+        // Get button element
+        const button = document.getElementById("changeText");
+
+        // Add click event
+        button.addEventListener("click", function() {
+
+            // Change text using DOM
+            document.getElementById("welcome").innerHTML = "We have changed the text";
+
+        });
+
+    </script>
+
+</body>
+</html>

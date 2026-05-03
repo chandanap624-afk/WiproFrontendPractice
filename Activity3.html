@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Shopping Cart</title>
+
+    <!-- Bootstrap CSS (for styling UI) -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body class="bg-light">
+
+<div class="container mt-5">
+
+    <h2 class="text-center mb-4">E-Shopping Cart Dashboard</h2>
+
+    <div class="card p-4 shadow">
+
+        <!-- Button to trigger JavaScript function -->
+        <button class="btn btn-primary mb-3" onclick="displayCart()">Show Cart Details</button>
+
+        <!-- Output will be displayed here using DOM -->
+        <div id="output"></div>
+    </div>
+
+</div>
+
+<script>
+
+// Cart data (Array of objects)
+const cart = [
+    {id:1, name:"Laptop", price:60000, qty:2, category:"Electronics"},
+    {id:2, name:"Mouse", price:500, qty:5, category:"Electronics"},
+    {id:3, name:"Keyboard", price:1000, qty:3, category:"Electronics"},
+    {id:4, name:"Monitor", price:15000, qty:2, category:"Electronics"}
+];
+
+// Function to calculate total quantity using reduce()
+const calculateTotalItems = () =>
+    cart.reduce((sum, item) => sum + item.qty, 0);
+
+// Main function triggered on button click
+const displayCart = () => {
+
+    // map() → used to extract only product names
+    const productNames = cart.map(item => item.name);
+
+    // reduce() → used to calculate total price (price * quantity)
+    const totalPrice = cart.reduce(
+        (sum, item) => sum + (item.price * item.qty), 0
+    );
+
+    // Taking input from user
+    const limit = Number(prompt("Enter price limit:"));
+
+    // filter() → used to get products greater than given price
+    const filteredProducts = cart.filter(item => item.price > limit);
+
+    // Template literals → used to build dynamic HTML output
+    let result = `
+        <h5>Product Names:</h5>
+        <p>${productNames.join(", ")}</p>
+
+        <h5>Total Price:</h5>
+        <p>₹${totalPrice}</p>
+
+        <h5>Products greater than ₹${limit}:</h5>
+        <ul class="list-group mb-3">
+    `;
+
+    // forEach() → used to loop through filtered products and display them
+    filteredProducts.forEach(item => {
+        result += `
+            <li class="list-group-item">
+                ${item.name} - ₹${item.price}
+            </li>
+        `;
+    });
+
+    result += `
+        </ul>
+
+        <h5>Total Quantity:</h5>
+        <p>${calculateTotalItems()}</p>
+    `;
+
+    // DOM → used to display result on webpage
+    document.getElementById("output").innerHTML = result;
+};
+
+</script>
+
+</body>
+</html>

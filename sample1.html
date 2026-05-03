@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.4.1/dist/css/bootstrap.min.css">
+</head>
+
+<body>
+
+<button class="btn btn-primary" onclick="validateForm()">Validate</button>
+<button class="btn btn-danger" onclick="showMessage()">Show Message</button>
+
+<script>
+
+function validateForm() {
+
+    let userName = prompt("Enter user name");
+    let age = prompt("Enter your age");
+    let isSubscribed = "true";
+
+    document.writeln("Your Name is : " + userName + "<br>");
+    document.writeln("Your Age is : " + age + "<br>");
+
+    console.log(typeof userName);
+    console.log(typeof age);
+    console.log(typeof isSubscribed);
+
+    // conversion
+    age = Number(age);
+    isSubscribed = isSubscribed === "true";
+
+    console.log(typeof age);
+    console.log(typeof isSubscribed);
+
+    const user = { role: "client" };
+
+    if(user.role === "admin" && isSubscribed === true) {
+        console.log("The access level is : Full Control");
+    }
+    else if(user.role === "client" && isSubscribed === false) {
+        console.log("The access level is : Partial Control");
+    }
+}
+
+function showMessage() {
+    alert("The event has occurred");
+}
+
+</script>
+
+</body>
+</html>
