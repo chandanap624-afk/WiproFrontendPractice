@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>AbortController Example</title>
+</head>
+<body>
+
+<h2>AbortController with Fetch JSON</h2>
+<button onclick="loadUsers()">Load Users</button>
+<button onclick="cancelRequest()">Cancel Request</button>
+
+<ul id="users"></ul>
+<p id="message"></p>
+
+<script>
+    let controller;
+
+    function loadUsers() {
+        controller = new AbortController();
+
+        document.getElementById("message").textContent = "Loading users...";
+        document.getElementById("users").innerHTML = "";
+
+        fetch("https://jsonplaceholder.typicode.com/users", {
+            signal: controller.signal
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById("message").textContent = "Data loaded successfully";
+
+            data.forEach(user => {
+                const li = document.createElement("li");
+                li.textContent = `User Name: ${user.username} - Email: ${user.email}`;
+                document.getElementById("users").append(li);
+            });
+        })
+        .catch(error => {
+            if (error.name === "AbortError") {
+                document.getElementById("message").textContent = "Fetch request cancelled";
+            } else {
+                document.getElementById("message").textContent = "Error while fetching data";
+                console.error(error);
+            }
+        });
+    }
+
+    function cancelRequest() {
+        if (controller) {
+            controller.abort();
+        }
+    }
+</script>
+
+</body>
+</html>

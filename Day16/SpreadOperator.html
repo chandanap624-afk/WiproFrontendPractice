@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Product Price Calculation</title>
+</head>
+<body>
+
+<h3>Product Price Calculation</h3>
+<pre id="output"></pre>
+
+<script>
+  const prices = [
+    { item: "Laptop", price: 3000 },
+    { item: "TV", price: 1500 },
+    { item: "Mouse", price: 2500 },
+    { item: "AC", price: 4000 }
+  ];
+
+  // ✅ Apply 10% discount
+  const discountedPrices = prices.map(p => ({
+    ...p,
+    price: p.price - (p.price * 0.10)
+  }));
+
+  // ✅ Filter prices greater than 2000
+  const filteredPrices = discountedPrices.filter(p => p.price > 2000);
+
+  // ✅ Calculate total price
+  const totalPrice = discountedPrices.reduce((sum, p) => sum + p.price, 0);
+
+  // ✅ Display output
+  const output = `
+Discounted Prices:
+${JSON.stringify(discountedPrices, null, 2)}
+
+Filtered Prices (>2000):
+${JSON.stringify(filteredPrices, null, 2)}
+
+Total Price:
+${totalPrice}
+  `;
+
+  document.getElementById("output").textContent = output;
+</script>
+
+</body>
+</html>

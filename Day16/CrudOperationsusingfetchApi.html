@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>CRUD Operations</title>
+</head>
+<body>
+
+<h3>User Management Operations</h3>
+
+<button onclick="fetchUser()">Fetch Users</button>
+<button onclick="addUser()">Add Users</button>
+<button onclick="updateUser()">Update Users</button>
+<button onclick="deleteUser()">Delete Users</button>
+
+<ul id="users"></ul>
+
+<script>
+
+const apiurl = "https://jsonplaceholder.typicode.com/users";
+const ul = document.getElementById("users");
+
+// READ
+function fetchUser() {
+    ul.innerHTML = ""; // clear old data
+
+    fetch(apiurl)
+    .then(res => res.json())
+    .then(users => {
+        users.forEach(user => {
+            const li = document.createElement("li");
+            li.textContent = `User Name: ${user.username} - Email: ${user.email}`;
+            ul.append(li);
+        });
+    })
+    .catch(err => console.error(err));
+}
+
+// CREATE
+function addUser() {
+    const newUser = {
+        name: "Niti",
+        email: "abc@gmail.com"
+    };
+
+    fetch(apiurl, {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(newUser)
+    })
+    .then(res => res.json())
+    .then(() => {
+        alert("User added");
+        fetchUser();
+    });
+}
+
+// UPDATE
+function updateUser() {
+    const id = prompt("Enter user ID to update");
+
+    fetch(`${apiurl}/${id}`, {
+        method: "PUT",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            name: "Updated User",
+            email: "updated@gmail.com"
+        })
+    })
+    .then(res => res.json())
+    .then(() => {
+        alert("User updated");
+        fetchUser();
+    });
+}
+
+// DELETE
+function deleteUser() {
+    const id = prompt("Enter user ID to delete");
+
+    fetch(`${apiurl}/${id}`, {
+        method: "DELETE"
+    })
+    .then(() => {
+        alert("User deleted");
+        fetchUser();
+    });
+}
+
+</script>
+
+</body>
+</html>

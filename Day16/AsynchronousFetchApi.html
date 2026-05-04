@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Async Fetch Example</title>
+</head>
+<body>
+
+<h3>Async Fetch Example</h3>
+<div id="output"></div>
+
+<script>
+    // Delay fetch by 5 seconds
+    setTimeout(() => {
+
+        fetch('https://jsonplaceholder.typicode.com/users')
+            .then(response => response.json())
+            .then(data => {
+                console.log("Data received from API:");
+
+                let output = "<h2>Data received from API:</h2>";
+
+                data.forEach(user => {
+                    output += `<p>User Name: ${user.username} - Email: ${user.email}</p>`;
+                });
+
+                document.getElementById("output").innerHTML = output;
+            })
+            .catch(err => console.error("Error while fetching data:", err));
+
+    }, 5000);
+
+    // These run immediately (non-blocking behavior)
+    console.log("Fetching data... takes time, meanwhile this runs");
+
+    for (let i = 0; i <= 3; i++) {
+        console.log("Performing some other task:", i);
+    }
+</script>
+
+</body>
+</html>
